@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <title>Searchable Map Template Demo</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'/>
+    <link rel='stylesheet' type='text/css' href='http://abhinemani.com/opencitiesmap/css/foundation.css'>
+    <link rel='stylesheet' type='text/css' href='css/icons/foundation-icons.css'>
+    <link href='http://fonts.googleapis.com/css?family=Raleway:400,700,100,200,300,500,600,800,900' rel='stylesheet' type='text/css'>   
+  </head>
+<body>
+
+  <nav class="top-bar" data-topbar>
+    <ul class="title-area">
+      <li class="name">
+        <h1><a href="#">Open City Map: Centralia</a></h1>
+      </li>
+      <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+    </ul>
+
+    <section class="top-bar-section">
+      <!-- Right Nav Section -->
+      <ul class="right">
+        <li class="has-dropdown">
+          <a href="index.html">All Cities</a>
+          <ul class="dropdown">
+            <li><a href="https://docs.google.com/forms/d/1qh8sI68arfB-vXQyh1saK9ld-uuE-hUHYhSIaWBy1CA/viewform">Add Your City</a></li>
+            <li><a href="https://docs.google.com/spreadsheets/d/1FhOYwOu1w14e_4qwKLsLoZYpd3hJu8Q3wSiZi5kwFMA/edit#gid=0">Explore the data</a></li>
+            
+          </ul>
+        </li>
+      </ul>
+
+      <!-- Left Nav Section -->
+      <!--<ul class="left">
+        <li><a href="#">Left Nav Button</a></li>
+      </ul>-->
+    </section>
+  </nav> 
+  <div class='row'>
+    <div class='large-4 columns'>
+      <div class='panel'>
+        <h2>Social Services Finder</h2>
+        <h4>
+          Address <small>(<a id='find_me' href='#'>find me</a>)</small>
+        </h4>
+              <input class='form-control' id='search_address' placeholder='Enter an address or an intersection' type='text' />
+              <label>
+                within
+                <select id='search_radius'>
+                  <option value='400'>2 blocks</option>
+                  <option value='805'>1/2 mile</option>
+                  <option value='1610'>1 mile</option>
+                  <option value='3220'>2 miles</option>
+                </select>
+              </label>
+              
+          
+            <h4>
+              Filter
+            </h4>
+            <input class='input' id='text_search' placeholder="Search keywords" type='text' />
+            
+            <div class="row">
+              <div class="large-12 columns">
+                <input  id='cbType1' type="checkbox"><label for="checkbox1">Emergency Aid & Support</label><br />
+                <input id="cbType2" type="checkbox"><label for="checkbox2">Youth-oriented activites</label><br />
+                <input id="cbType3" type="checkbox"><label for="checkbox2">24-Hour Access</label>
+              </div>
+        </div>
+
+            <a class='button expand alert' id='search' href='#'>Search</a>
+            <a class='expand button secondary' id='reset' href='#'> Reset
+            </a>
+            <div class='alert alert-info' id='result_box' ><strong id='result_count'></strong></div>
+    </div>
+  </div>
+  <div class='large-8 column'>
+          <noscript>
+            <div class='alert alert-info'>
+              <h4>Your JavaScript is disabled</h4>
+              <p>Please enable JavaScript to view the map.</p>
+            </div>
+          </noscript>
+          <div id='map_canvas'></div>
+          <p class='pull-right'>
+            <a href='http://derekeder.com/searchable_map_template/'>Searchable Map Template</a> by <a href='http://derekeder.com'>Derek Eder</a>.
+        </p>
+  </div>
+ </div>
+
+    <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="js/jquery.address.js"></script>
+    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&libraries=places&v=3.14"></script>
+    <script type="text/javascript" src="js/jquery.geocomplete.min.js"></script>
+    <script type="text/javascript" src="js/maps_lib.js"></script>
+    <script type="text/javascript" src="js/foundation.min.js"></script>
+    
+    <script type='text/javascript'>
+      //<![CDATA[
+        $(window).resize(function () {
+          var h = $(window).height(),
+            offsetTop = 105; // Calculate the top offset
+        
+          $('#map_canvas').css('height', (h - offsetTop));
+        }).resize();
+        
+        $(function() {
+          MapsLib.initialize();
+          $("#search_address").geocomplete();
+
+          $(':checkbox').click(function(){
+            MapsLib.doSearch();
+          });
+
+          $(':radio').click(function(){
+            MapsLib.doSearch();
+          });
+          
+          $('#search_radius').change(function(){
+            MapsLib.doSearch();
+          });
+          
+          $('#search').click(function(){
+            MapsLib.doSearch();
+          });
+          
+          $('#find_me').click(function(){
+            MapsLib.findMe(); 
+            return false;
+          });
+          
+          $('#reset').click(function(){
+            $.address.parameter('address','');
+            MapsLib.initialize(); 
+            return false;
+          });
+          
+          $(":text").keydown(function(e){
+              var key =  e.keyCode ? e.keyCode : e.which;
+              if(key == 13) {
+                  $('#search').click();
+                  return false;
+              }
+          });
+        });
+      //]]>
+    </script>
+    <script>
+      $(document).foundation();
+    </script>
+  </body>
+</html>
