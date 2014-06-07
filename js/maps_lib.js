@@ -21,7 +21,7 @@ var MapsLib = {
 
   //the encrypted Table ID of your Fusion Table (found under File => About)
   //NOTE: numeric IDs will be depricated soon
-  fusionTableId:      "1GEHPPXGrfxEc91fxmr0vG1pQyNrPQ-N8HjlJU0GH",
+  fusionTableId:      "1PNJGtiDNPx4jypM0sNGtTjTFVA6uwH9VYiWYltJ6",
 
   //*New Fusion Tables Requirement* API key. found at https://code.google.com/apis/console/
   //*Important* this key is for demonstration purposes. please register your own.
@@ -30,10 +30,10 @@ var MapsLib = {
   //name of the location column in your Fusion Table.
   //NOTE: if your location column name has spaces in it, surround it with single quotes
   //example: locationColumn:     "'my location'",
-  locationColumn:     "address",
+  locationColumn:     "address1",
 
-  map_centroid:       new google.maps.LatLng(38.5253, -89.1325), //center that your map defaults to
-  locationScope:      "centralia, il",      //geographical area appended to all address searches
+  map_centroid:       new google.maps.LatLng(38.6272, -90.1978), //center that your map defaults to
+  locationScope:      "St Louis, MO",      //geographical area appended to all address searches
   recordName:         "result",       //for showing number of results
   recordNamePlural:   "results",
 
@@ -97,7 +97,7 @@ var MapsLib = {
     
     var text_search = $("#text_search").val().replace("'", "\\'");
     if (text_search != '')
-      whereClause += " AND 'description' contains ignoring case '" + text_search + "'";
+      whereClause += " AND 'services' contains ignoring case '" + text_search + "'";
     //-------end of custom filters--------
 
     if (address != "") {
