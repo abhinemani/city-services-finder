@@ -90,19 +90,19 @@ var MapsLib = {
     //-----custom filters-------
     var type_column = "'Day'";
     var searchType = type_column + " IN (-1,";
-    if ( $("#cbType1").is(':checked')) searchType += "Sunday,";
-    if ( $("#cbType2").is(':checked')) searchType += "Monday,";
-    if ( $("#cbType3").is(':checked')) searchType += "Tuesday,";
-    if ( $("#cbType4").is(':checked')) searchType += "Wednesday,";
-    if ( $("#cbType5").is(':checked')) searchType += "Thursday,";
-    if ( $("#cbType6").is(':checked')) searchType += "Friday,";
-    if ( $("#cbType7").is(':checked')) searchType += "Saturday,";
+    if ( $("#cbType1").is(':checked')) searchType += "1,";
+    if ( $("#cbType2").is(':checked')) searchType += "2,";
+    if ( $("#cbType3").is(':checked')) searchType += "3,";
+    if ( $("#cbType4").is(':checked')) searchType += "4,";
+    if ( $("#cbType5").is(':checked')) searchType += "5,";
+    if ( $("#cbType6").is(':checked')) searchType += "6,";
+    if ( $("#cbType7").is(':checked')) searchType += "7,";
 	
     whereClause += " AND " + searchType.slice(0, searchType.length - 1) + ")";
 
     var text_search = $("#text_search").val().replace("'", "\\'");
     if (text_search != '')
-      whereClause += " AND 'services' contains ignoring case '" + text_search + "'";
+      whereClause += " AND '' contains ignoring case '" + text_search + "'";
     //-------end of custom filters--------
 
     if (address != "") {
@@ -221,7 +221,7 @@ var MapsLib = {
         fillOpacity: 0.05,
         map: map,
         center: point,
-        clickable: true,
+        clickable: false,
         zIndex: -1,
         radius: parseInt(MapsLib.searchRadius)
       };
