@@ -38,7 +38,7 @@ var MapsLib = {
   recordNamePlural:   "results",
 
   searchRadius:       805,            //in meters ~ 1/2 mile
-  defaultZoom:        14,             //zoom level when map is loaded (bigger is more zoomed in)
+  defaultZoom:        10,             //zoom level when map is loaded (bigger is more zoomed in)
   addrMarkerImage:    'images/blue-pushpin.png',
   currentPinpoint:    null,
 
@@ -91,6 +91,9 @@ var MapsLib = {
     var type_column = "'Day'";
     var searchType = type_column + " IN (-1," + $("select#cbType8").val();
     whereClause += " AND " + searchType + ")";
+    if ($("select#cbType8").val() == '')
+		whereClause += " AND " + "1,2,3,4,5,6,7)";
+	
     
     var text_search = $("#text_search").val().replace("'", "\\'");
     if (text_search != '')
