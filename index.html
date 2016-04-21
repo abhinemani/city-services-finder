@@ -56,6 +56,22 @@
                   <option value='3220'>2 miles</option>
                 </select>
               </label>
+			  
+              <div class="row">
+                <div class="large-12 columns">
+  				<select name="day" id="cbType8">
+    				  <option value="">Day</option>
+  				  <option value="1">Sunday</option>
+  				  <option value="2">Monday</option>
+  				  <option value="3">Tuesday</option>
+  				  <option value="4">Wednesday</option>
+  				  <option value="5">Thursday</option>
+  				  <option value="6">Friday</option>
+  				  <option value="7">Saturday</option>
+  				</select>
+                </div>
+          	</div>
+			  
               
           
             <h4>
@@ -63,18 +79,6 @@
             </h4>
             <input class='input' id='text_search' placeholder="Search keywords" type='text' />
             
-            <div class="row">
-              <div class="large-12 columns">
-                <input  id="cbType1" type="checkbox"><label for="checkbox1">Sunday</label><br />
-                <input id="cbType2" type="checkbox"><label for="checkbox2">Monday</label><br />
-                <input id="cbType3" type="checkbox"><label for="checkbox3">Tuesday</label>
-                <input  id="cbType4" type="checkbox"><label for="checkbox1">Wednesday</label><br />
-                <input id="cbType5" type="checkbox"><label for="checkbox2">Thursday</label><br />
-                <input id="cbType6" type="checkbox"><label for="checkbox3">Friday</label>
-                <input id="cbType7" type="checkbox"><label for="checkbox3">Saturday</label>
-				
-              </div>
-        </div>
 
             <a class='button expand alert' id='search' href='#'>Search</a>
             <a class='expand button secondary' id='reset' href='#'> Reset
@@ -98,7 +102,7 @@
 
     <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
     <script type="text/javascript" src="js/jquery.address.js"></script>
-    <script type="text/javascript" src="http://maps.google.com/maps/api/js?ibraries=places&v=3.14"></script>
+    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&libraries=places&v=3.14"></script>
     <script type="text/javascript" src="js/jquery.geocomplete.min.js"></script>
     <script type="text/javascript" src="js/maps_lib.js"></script>
     <script type="text/javascript" src="js/foundation.min.js"></script>

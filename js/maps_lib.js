@@ -21,7 +21,7 @@ var MapsLib = {
 
   //the encrypted Table ID of your Fusion Table (found under File => About)
   //NOTE: numeric IDs will be depricated soon
-  fusionTableId:      "1M3cI1lQo4SJxtx8OC3I0Nmdqv6WwnTNGZwZaXt_v",
+  fusionTableId:      "1UoMEHJQRYDOyulH4bGP6skASMjM6Eh4e3-yMLJli",
 
   //*New Fusion Tables Requirement* API key. found at https://code.google.com/apis/console/
   //*Important* this key is for demonstration purposes. please register your own.
@@ -30,7 +30,7 @@ var MapsLib = {
   //name of the location column in your Fusion Table.
   //NOTE: if your location column name has spaces in it, surround it with single quotes
   //example: locationColumn:     "'my location'",
-  locationColumn:     "Location",
+  locationColumn:     "Address",
 
   map_centroid:       new google.maps.LatLng(38.661561, -90.3079), //center that your map defaults to
   locationScope:      "St Louis, MO",      //geographical area appended to all address searches
@@ -88,21 +88,15 @@ var MapsLib = {
     var whereClause = MapsLib.locationColumn + " not equal to ''";
 
     //-----custom filters-------
+
+
     var type_column = "'Day'";
-    var searchType = type_column + " IN (-1,";
-    if ( $("#cbType1").is(':checked')) searchType += "1,";
-    if ( $("#cbType2").is(':checked')) searchType += "2,";
-    if ( $("#cbType3").is(':checked')) searchType += "3,";
-    if ( $("#cbType4").is(':checked')) searchType += "4,";
-    if ( $("#cbType5").is(':checked')) searchType += "5,";
-    if ( $("#cbType6").is(':checked')) searchType += "6,";
-    if ( $("#cbType7").is(':checked')) searchType += "7,";
-	
+    var searchType = type_column + " IN (-1," + $("select#cbType8").val() + ",";
     whereClause += " AND " + searchType.slice(0, searchType.length - 1) + ")";
 
     var text_search = $("#text_search").val().replace("'", "\\'");
     if (text_search != '')
-      whereClause += " AND '' contains ignoring case '" + text_search + "'";
+      whereClause += " AND 'Format' contains ignoring case '" + text_search + "'";
     //-------end of custom filters--------
 
     if (address != "") {
