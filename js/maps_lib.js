@@ -92,7 +92,7 @@ var MapsLib = {
     var searchType = type_column + " IN (-1," + $("select#cbType8").val();
     whereClause += " AND " + searchType + ")";
     if ($("select#cbType8").val() == '')
-		whereClause += " AND " + "1,2,3,4,5,6,7)";
+		whereClause += " AND " + type_column + " IN (-1,1,2,3,4,5,6,7)";
 	
     
     var text_search = $("#text_search").val().replace("'", "\\'");
