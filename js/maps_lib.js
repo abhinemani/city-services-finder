@@ -21,7 +21,7 @@ var MapsLib = {
 
   //the encrypted Table ID of your Fusion Table (found under File => About)
   //NOTE: numeric IDs will be depricated soon
-  fusionTableId:      "1PNJGtiDNPx4jypM0sNGtTjTFVA6uwH9VYiWYltJ6",
+  fusionTableId:      "1M3cI1lQo4SJxtx8OC3I0Nmdqv6WwnTNGZwZaXt_v",
 
   //*New Fusion Tables Requirement* API key. found at https://code.google.com/apis/console/
   //*Important* this key is for demonstration purposes. please register your own.
@@ -38,7 +38,7 @@ var MapsLib = {
   recordNamePlural:   "results",
 
   searchRadius:       805,            //in meters ~ 1/2 mile
-  defaultZoom:        14,             //zoom level when map is loaded (bigger is more zoomed in)
+  defaultZoom:        10,             //zoom level when map is loaded (bigger is more zoomed in)
   addrMarkerImage:    'images/blue-pushpin.png',
   currentPinpoint:    null,
 
@@ -88,13 +88,18 @@ var MapsLib = {
     var whereClause = MapsLib.locationColumn + " not equal to ''";
 
     //-----custom filters-------
-    var type_column = "'type'";
+    var type_column = "'Day'";
     var searchType = type_column + " IN (-1,";
-    if ( $("#cbType1").is(':checked')) searchType += "1,";
-    if ( $("#cbType2").is(':checked')) searchType += "2,";
-    if ( $("#cbType3").is(':checked')) searchType += "3,";
+    if ( $("#cbType1").is(':checked')) searchType += "Sunday,";
+    if ( $("#cbType2").is(':checked')) searchType += "Monday,";
+    if ( $("#cbType3").is(':checked')) searchType += "Tuesday,";
+    if ( $("#cbType4").is(':checked')) searchType += "Wednesday,";
+    if ( $("#cbType5").is(':checked')) searchType += "Thursday,";
+    if ( $("#cbType6").is(':checked')) searchType += "Friday,";
+    if ( $("#cbType7").is(':checked')) searchType += "Saturday,";
+	
     whereClause += " AND " + searchType.slice(0, searchType.length - 1) + ")";
-    
+
     var text_search = $("#text_search").val().replace("'", "\\'");
     if (text_search != '')
       whereClause += " AND 'services' contains ignoring case '" + text_search + "'";
@@ -216,7 +221,7 @@ var MapsLib = {
         fillOpacity: 0.05,
         map: map,
         center: point,
-        clickable: false,
+        clickable: true,
         zIndex: -1,
         radius: parseInt(MapsLib.searchRadius)
       };
