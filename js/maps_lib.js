@@ -21,7 +21,7 @@ var MapsLib = {
 
   //the encrypted Table ID of your Fusion Table (found under File => About)
   //NOTE: numeric IDs will be depricated soon
-  fusionTableId:      "1UoMEHJQRYDOyulH4bGP6skASMjM6Eh4e3-yMLJli",
+  fusionTableId:      "1PNJGtiDNPx4jypM0sNGtTjTFVA6uwH9VYiWYltJ6",
 
   //*New Fusion Tables Requirement* API key. found at https://code.google.com/apis/console/
   //*Important* this key is for demonstration purposes. please register your own.
@@ -30,7 +30,7 @@ var MapsLib = {
   //name of the location column in your Fusion Table.
   //NOTE: if your location column name has spaces in it, surround it with single quotes
   //example: locationColumn:     "'my location'",
-  locationColumn:     "Address",
+  locationColumn:     "address1",
 
   map_centroid:       new google.maps.LatLng(38.661561, -90.3079), //center that your map defaults to
   locationScope:      "St Louis, MO",      //geographical area appended to all address searches
@@ -38,7 +38,7 @@ var MapsLib = {
   recordNamePlural:   "results",
 
   searchRadius:       805,            //in meters ~ 1/2 mile
-  defaultZoom:        10,             //zoom level when map is loaded (bigger is more zoomed in)
+  defaultZoom:        14,             //zoom level when map is loaded (bigger is more zoomed in)
   addrMarkerImage:    'images/blue-pushpin.png',
   currentPinpoint:    null,
 
@@ -88,13 +88,12 @@ var MapsLib = {
     var whereClause = MapsLib.locationColumn + " not equal to ''";
 
     //-----custom filters-------
-    var type_column = "'Day'";
-    var searchType = type_column + " IN (-1," + $("select#cbType8").val();
-	if ($("select#cbType8").val() != '')
-   	 	whereClause += " AND " + searchType + ")";
-    if ($("select#cbType8").val() == '')
-		whereClause += " AND " + type_column + " IN (-1,1,2,3,4,5,6,7)";
-	
+    var type_column = "'type'";
+    var searchType = type_column + " IN (-1,";
+    if ( $("#cbType1").is(':checked')) searchType += "1,";
+    if ( $("#cbType2").is(':checked')) searchType += "2,";
+    if ( $("#cbType3").is(':checked')) searchType += "3,";
+    whereClause += " AND " + searchType.slice(0, searchType.length - 1) + ")";
     
     var text_search = $("#text_search").val().replace("'", "\\'");
     if (text_search != '')
@@ -164,7 +163,7 @@ var MapsLib = {
         where:  whereClause
       },
       styleId: 2,
-      templateId: 3
+      templateId: 2
     });
     MapsLib.searchrecords.setMap(map);
     MapsLib.getCount(whereClause);
