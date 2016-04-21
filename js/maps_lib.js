@@ -90,7 +90,8 @@ var MapsLib = {
     //-----custom filters-------
     var type_column = "'Day'";
     var searchType = type_column + " IN (-1," + $("select#cbType8").val();
-    whereClause += " AND " + searchType + ")";
+	if ($("select#cbType8").val() != '')
+   	 	whereClause += " AND " + searchType + ")";
     if ($("select#cbType8").val() == '')
 		whereClause += " AND " + type_column + " IN (-1,1,2,3,4,5,6,7)";
 	
