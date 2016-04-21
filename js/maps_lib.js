@@ -92,7 +92,9 @@ var MapsLib = {
 
     var type_column = "'Day'";
     var searchType = type_column + " IN (-1," + $("select#cbType8").val() + ",";
-    whereClause += " AND " + searchType.slice(0, searchType.length - 1) + ")";
+    whereClause = " AND " + searchType.slice(0, searchType.length - 1) + ")";
+    if ($("select#cbType8").val() == '')
+	    whereClause = " AND " + "1,2,3,4,5,6,7)";
 
     var text_search = $("#text_search").val().replace("'", "\\'");
     if (text_search != '')
