@@ -38,7 +38,7 @@ var MapsLib = {
   recordNamePlural:   "results",
 
   searchRadius:       805,            //in meters ~ 1/2 mile
-  defaultZoom:        10,             //zoom level when map is loaded (bigger is more zoomed in)
+  defaultZoom:        14,             //zoom level when map is loaded (bigger is more zoomed in)
   addrMarkerImage:    'images/blue-pushpin.png',
   currentPinpoint:    null,
 
@@ -88,17 +88,13 @@ var MapsLib = {
     var whereClause = MapsLib.locationColumn + " not equal to ''";
 
     //-----custom filters-------
-
-
     var type_column = "'Day'";
-    var searchType = type_column + " IN (-1," + $("select#cbType8").val() + ",";
-    whereClause = " AND " + searchType.slice(0, searchType.length - 1) + ")";
-    if ($("select#cbType8").val() == '')
-	  whereClause = " AND " + searchType.slice(0, searchType.length - 1) + "1,2,3,4,5,6,7)";
-
+    var searchType = type_column + " IN (-1," + $("select#cbType8").val();
+    whereClause += " AND " + searchType + ")";
+    
     var text_search = $("#text_search").val().replace("'", "\\'");
     if (text_search != '')
-      whereClause += " AND 'Format' contains ignoring case '" + text_search + "'";
+      whereClause += " AND 'services' contains ignoring case '" + text_search + "'";
     //-------end of custom filters--------
 
     if (address != "") {
